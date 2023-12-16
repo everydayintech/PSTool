@@ -75,8 +75,17 @@ $ToolBeltJson = @'
 
 $ToolBelt = $ToolBeltJson | ConvertFrom-Json
 
+function Read-UserInput {
+    param (
+        $Prompt, $ForegroundColor = "white"
+    )
+    
+    Write-Host "$Prompt" -NoNewLine -ForegroundColor $ForegroundColor
+    return ($Host.UI.ReadLine())
+}
+
 do {
-    $UserInput = Read-Host 'pstool>'
+    $UserInput = Read-UserInput -Prompt 'PSTool> ' -ForegroundColor DarkGray
 
     if (!($UserInput.Length -gt 0)) {
         continue
@@ -84,7 +93,9 @@ do {
 
     $SelectedTool = $ToolBelt | Where-Object { ($_.id -eq $UserInput) } | Select-Object -First 1
     if ($SelectedTool) {
-        $UserConfirm = Read-Host ("=> [{0}] {1} `n=> Description: {2} `nGo? [Y/n]" -f $SelectedTool.id, $SelectedTool.name, $SelectedTool.description)
+        $UserConfirm = Read-UserInput `
+            -Prompt ("=> [{0}] {1} `n   Description:  {2} `n   Script:       {3} `n`nRun? [Y/n] " -f $SelectedTool.id, $SelectedTool.name, $SelectedTool.description, $SelectedTool.script) `
+            -ForegroundColor Cyan
         if ($UserConfirm.ToLower().Equals('y')) {
             Write-Host ('Running Tool [{0}]!' -f $SelectedTool.name) -ForegroundColor Magenta
 
