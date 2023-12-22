@@ -22,7 +22,7 @@ $ToolBeltJson = @'
                          "logs"
                      ],
         "id":  "cmt",
-        "script":  "https://raw.githubusercontent.com/everydayintech/Scripts/main/Intune/Invoke-CMTraceIMELog.ps1"
+        "script":  "https://raw.githubusercontent.com/everydayintech/Scripts/main/Intune/Get-CMTrace.ps1"
     },
     {
         "name":  "Run HP Image Assistant",
@@ -100,6 +100,7 @@ do {
             Write-Host ('Running Tool [{0}]!' -f $SelectedTool.name) -ForegroundColor Magenta
 
             Invoke-RestMethod -UseBasicParsing -Uri $SelectedTool.script | Invoke-Expression
+            return
         }
         
     }
