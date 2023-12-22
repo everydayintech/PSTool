@@ -73,8 +73,6 @@ $ToolBeltJson = @'
 ]
 '@
 
-$ToolBelt = $ToolBeltJson | ConvertFrom-Json
-
 function Read-UserInput {
     param (
         $Prompt, $ForegroundColor = "white"
@@ -84,11 +82,27 @@ function Read-UserInput {
     return ($Host.UI.ReadLine())
 }
 
-do {
-    $UserInput = Read-UserInput -Prompt 'PSTool> ' -ForegroundColor DarkGray
+function Get-UrlParamUserInput {
+    if((Get-History | Select-Object -Last 1 -ExpandProperty CommandLine) -match "pstool\.everydayin\.tech\?([a-z]+)\s"){
+        return [string]$Matches[1]
+    }
+}
 
-    if (!($UserInput.Length -gt 0)) {
-        continue
+$ToolBelt = $ToolBeltJson | ConvertFrom-Json
+
+$UrlParamUserInput = Get-UrlParamUserInput
+
+do {
+    if($UrlParamUserInput){
+        $UserInput = $UrlParamUserInput
+        $UrlParamUserInput = $null
+    }
+    else {
+        $UserInput = Read-UserInput -Prompt 'PSTool> ' -ForegroundColor DarkGray
+
+        if (!($UserInput.Length -gt 0)) {
+            continue
+        }    
     }
 
     $SelectedTool = $ToolBelt | Where-Object { ($_.id -eq $UserInput) } | Select-Object -First 1
@@ -102,6 +116,9 @@ do {
             Invoke-RestMethod -UseBasicParsing -Uri $SelectedTool.script | Invoke-Expression
             return
         }
+
+        #Reset Selected Tool
+        $SelectedTool = $null
         
     }
     else {
