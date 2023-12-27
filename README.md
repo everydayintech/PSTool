@@ -12,7 +12,10 @@ To use PSTool, simply run the script from your PowerShell command line:
 irm pstool.everydayin.tech | iex
 ```
 
-This will display the PSTool prompt. To get a menu of available tools, enter a search term, keyword or `?` to list every tool available. Enter the identifyer of the tool (specified in `[brackets]`) you wish to use and press Enter. You will be asked to confirm before the tool is executed.
+This will display the `PSTool>` prompt. To get a menu of available tools, enter a search term, keyword or `?` and press Enter to list every tool available. Enter the identifyer of the tool (specified in `[brackets]`) you wish to use and press Enter. You will be asked to confirm before the tool is executed.
+
+To exit the PSTool prompt, type `exit` and press Enter or press `ctrl + C`.
+PSTool will automatically exit after a tool has been executed.
 
 ## Shortcuts
 
@@ -25,7 +28,9 @@ irm pstool.everydayin.tech?cmt | iex
 ```
 
 ## Contributing
+
 If you have a tool you'd like to add, or if you've found a bug, please open an issue or submit a pull request.
 
 ## License
+
 PSTool is licensed under the MIT License. See LICENSE for more information.
