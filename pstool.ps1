@@ -85,7 +85,6 @@ $UrlParamUserInput = Get-UrlParamUserInput
 
 do {
     if($UrlParamUserInput){
-        Write-Host "Found URL Parameter Input: [$($UrlParamUserInput)]"
         $UserInput = $UrlParamUserInput
         $UrlParamUserInput = $null
     }
