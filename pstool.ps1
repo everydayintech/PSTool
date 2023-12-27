@@ -40,17 +40,6 @@ $ToolBeltJson = @'
         "script":  "https://raw.githubusercontent.com/everydayintech/Scripts/main/HP/Invoke-HPImageAssistant.ps1"
     },
     {
-        "name":  "Install and load AppCat PowerShell Module",
-        "description":  "Download and load AppCat PowerShell Module via AppCat Installer.",
-        "keywords":  [
-                         "install",
-                         "apps",
-                         "update"
-                     ],
-        "id":  "appcat",
-        "script":  "https://appcat.leuchter-cloud.ch"
-    },
-    {
         "name":  "Logoff and remove LastLoggedOnUser from Registry",
         "description":  "Logoff from a PC as if you have never been there.",
         "keywords":  [
@@ -83,10 +72,12 @@ function Read-UserInput {
 }
 
 function Get-UrlParamUserInput {
-    if(($MyInvocation.MyCommand) -match "pstool\.everydayin\.tech\?([a-z]+)\s"){
+    if(($Script:MyCommand) -match "pstool\.everydayin\.tech\?([a-z]+)\s"){
         return [string]$Matches[1]
     }
 }
+
+$Script:MyCommand = $MyInvocation.MyCommand
 
 $ToolBelt = $ToolBeltJson | ConvertFrom-Json
 
