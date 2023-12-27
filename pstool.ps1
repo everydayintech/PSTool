@@ -83,7 +83,7 @@ function Read-UserInput {
 }
 
 function Get-UrlParamUserInput {
-    if([string]($MyInvocation.MyCommand) -match "pstool\.everydayin\.tech\?([a-z]+)\s"){
+    if(($MyInvocation.MyCommand) -match "pstool\.everydayin\.tech\?([a-z]+)\s"){
         return [string]$Matches[1]
     }
 }
@@ -92,10 +92,9 @@ $ToolBelt = $ToolBeltJson | ConvertFrom-Json
 
 $UrlParamUserInput = Get-UrlParamUserInput
 
-Write-Host $MyInvocation.MyCommand
-
 do {
     if($UrlParamUserInput){
+        Write-Host "Found URL Parameter Input: [$($UrlParamUserInput)]"
         $UserInput = $UrlParamUserInput
         $UrlParamUserInput = $null
     }
