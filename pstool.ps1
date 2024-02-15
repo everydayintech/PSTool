@@ -88,15 +88,15 @@ $ToolBeltJson = @'
 
 function Read-UserInput {
     param (
-        $Prompt, $ForegroundColor = "white"
+        $Prompt, $ForegroundColor = 'white'
     )
     
-    Write-Host "$Prompt" -NoNewLine -ForegroundColor $ForegroundColor
+    Write-Host "$Prompt" -NoNewline -ForegroundColor $ForegroundColor
     return ($Host.UI.ReadLine())
 }
 
 function Get-UrlParamUserInput {
-    if(($Script:MyCommand) -match "pstool\.everydayin\.tech\?([a-z]+)\s"){
+    if (($Script:MyCommand) -match 'pstool\.everydayin\.tech\?([a-z]+!?)\s') {
         return [string]$Matches[1]
     }
 }
@@ -108,8 +108,9 @@ $ToolBelt = $ToolBeltJson | ConvertFrom-Json
 $UrlParamUserInput = Get-UrlParamUserInput
 
 do {
-    if($UrlParamUserInput){
-        $UserInput = $UrlParamUserInput
+    if ($UrlParamUserInput) {
+        $UserInput = $UrlParamUserInput -match '[a-z]+' | ForEach-Object { $Matches[0] }
+        $UrlParamUserConfirm = ($UrlParamUserInput[-1] -eq '!')
         $UrlParamUserInput = $null
     }
     else {
@@ -122,10 +123,12 @@ do {
 
     $SelectedTool = $ToolBelt | Where-Object { ($_.id -eq $UserInput) } | Select-Object -First 1
     if ($SelectedTool) {
-        $UserConfirm = Read-UserInput `
-            -Prompt ("=> [{0}] {1} `n   Description:  {2} `n   Script:       {3} `n`nRun? [Y/n] " -f $SelectedTool.id, $SelectedTool.name, $SelectedTool.description, $SelectedTool.script) `
-            -ForegroundColor Cyan
-        if ($UserConfirm.ToLower().Equals('y')) {
+        if (-NOT $UrlParamUserConfirm) {
+            $UserConfirm = Read-UserInput `
+                -Prompt ("=> [{0}] {1} `n   Description:  {2} `n   Script:       {3} `n`nRun? [Y/n] " -f $SelectedTool.id, $SelectedTool.name, $SelectedTool.description, $SelectedTool.script) `
+                -ForegroundColor Cyan
+        }
+        if ($UserConfirm.ToLower().Equals('y') -OR $UrlParamUserConfirm) {
             Write-Host ('Running Tool [{0}]!' -f $SelectedTool.name) -ForegroundColor Magenta
 
             Invoke-RestMethod -UseBasicParsing -Uri $SelectedTool.script | Invoke-Expression
