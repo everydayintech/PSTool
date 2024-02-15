@@ -128,7 +128,7 @@ do {
                 -Prompt ("=> [{0}] {1} `n   Description:  {2} `n   Script:       {3} `n`nRun? [Y/n] " -f $SelectedTool.id, $SelectedTool.name, $SelectedTool.description, $SelectedTool.script) `
                 -ForegroundColor Cyan
         }
-        if ($UserConfirm.ToLower().Equals('y') -OR $UrlParamUserConfirm) {
+        if ($UrlParamUserConfirm -OR $UserConfirm.ToLower().Equals('y')) {
             Write-Host ('Running Tool [{0}]!' -f $SelectedTool.name) -ForegroundColor Magenta
 
             Invoke-RestMethod -UseBasicParsing -Uri $SelectedTool.script | Invoke-Expression
