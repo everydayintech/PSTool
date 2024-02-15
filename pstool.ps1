@@ -117,6 +117,7 @@ $Script:MyCommand = $MyInvocation.MyCommand
 $ToolBelt = $ToolBeltJson | ConvertFrom-Json
 
 $UrlParamUserInput = Get-UrlParamUserInput
+$UrlParamUserConfirm = $false
 
 do {
     if ($UrlParamUserInput) {
