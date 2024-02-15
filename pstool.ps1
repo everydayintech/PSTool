@@ -58,6 +58,30 @@ $ToolBeltJson = @'
                      ],
         "id":  "rcm",
         "script":  "https://gist.githubusercontent.com/everydayintech/45fe66b0ee59f58f9aa0a5ec0b655e3d/raw/346d57029d6c563aac2878650de66ce47aa1e468/Remove%2520CCMAgent.ps1"
+    },
+    {
+        "name":  "Run Process Explorer",
+        "description":  "Download Process Explorer to temp directory and run it",
+        "keywords":  [
+                         "procexp",
+                         "process",
+                         "taskmanager",
+                         "task",
+                         "sysinternals"
+                     ],
+        "id":  "pe",
+        "script":  "https://raw.githubusercontent.com/everydayintech/Scripts/main/Tools/Get-ProcExp.ps1"
+    },
+    {
+        "name":  "Run Process Monitor",
+        "description":  "Download Process Monitor to temp directory and run it",
+        "keywords":  [
+                         "procmon",
+                         "process",
+                         "sysinternals"
+                     ],
+        "id":  "pm",
+        "script":  "https://raw.githubusercontent.com/everydayintech/Scripts/main/Tools/Get-ProcMon.ps1"
     }
 ]
 '@
