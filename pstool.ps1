@@ -82,6 +82,17 @@ $ToolBeltJson = @'
                      ],
         "id":  "pm",
         "script":  "https://raw.githubusercontent.com/everydayintech/Scripts/main/Tools/Get-ProcMon.ps1"
+    },
+    {
+        "name":  "Run TreeSize Free Portable",
+        "description":  "Download TreeSize Portable to temp directory and run it",
+        "keywords":  [
+                         "disk",
+                         "diskspace",
+                         "clean"
+                     ],
+        "id":  "tsp",
+        "script":  "https://raw.githubusercontent.com/everydayintech/Scripts/main/Tools/Get-TreeSizeFreePortable.ps1"
     }
 ]
 '@
