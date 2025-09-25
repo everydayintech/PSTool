@@ -110,6 +110,9 @@ function Get-UrlParamUserInput {
     if (($Script:MyCommand) -match 'pstool\.everydayin\.tech\?([a-z]+!?)\s') {
         return [string]$Matches[1]
     }
+    if (($Script:MyCommand) -match 'pstool\.net\?([a-z]+!?)\s') {
+        return [string]$Matches[1]
+    }
 }
 
 $Script:MyCommand = $MyInvocation.MyCommand
