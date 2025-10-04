@@ -95,6 +95,19 @@ $ToolBeltJson = @'
                      ],
         "id":  "wds",
         "script":  "https://raw.githubusercontent.com/everydayintech/Scripts/refs/heads/main/Tools/Get-WinDirStatPortable.ps1"
+    },
+    {
+        "name":  "Run WinDirStat Portable",
+        "description":  "Download WinDirStat Portable to temp directory and run it",
+        "keywords":  [
+                         "disk",
+                         "diskspace",
+                         "clean",
+                         "windirstat",
+                         "stat"
+                     ],
+        "id":  "wds2",
+        "script":  "https://raw.githubusercontent.com/everydayintech/Scripts/refs/heads/main/Tools/Invoke-DownloadExpandRun.ps1?https%3a%2f%2fgithub.com%2fwindirstat%2fwindirstat%2freleases%2fdownload%2frelease%2fv2.2.2%2fWinDirStat.zip%26WinDirStat.zip%268161876730EB80E56B34331BDA633DB83E44AEC9897713A48713633CD6D672E5%26True%26WinDirStatPortable%26x64%2fWinDirStat.exe#"
     }
 ]
 '@
