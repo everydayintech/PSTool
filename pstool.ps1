@@ -84,15 +84,17 @@ $ToolBeltJson = @'
         "script":  "https://raw.githubusercontent.com/everydayintech/Scripts/main/Tools/Get-ProcMon.ps1"
     },
     {
-        "name":  "Run TreeSize Free Portable",
-        "description":  "Download TreeSize Portable to temp directory and run it",
+        "name":  "Run WinDirStat Portable",
+        "description":  "Download WinDirStat Portable to temp directory and run it",
         "keywords":  [
                          "disk",
                          "diskspace",
-                         "clean"
+                         "clean",
+                         "windirstat",
+                         "stat"
                      ],
-        "id":  "tsp",
-        "script":  "https://raw.githubusercontent.com/everydayintech/Scripts/main/Tools/Get-TreeSizeFreePortable.ps1"
+        "id":  "wds",
+        "script":  "https://raw.githubusercontent.com/everydayintech/Scripts/refs/heads/main/Tools/Get-WinDirStatPortable.ps1"
     }
 ]
 '@
@@ -129,7 +131,7 @@ do {
         $UrlParamUserInput = $null
     }
     else {
-        $UserInput = Read-UserInput -Prompt 'PSTool> ' -ForegroundColor DarkGray
+        $UserInput = Read-UserInput -Prompt 'PSTool> '
 
         if (!($UserInput.Length -gt 0)) {
             continue
