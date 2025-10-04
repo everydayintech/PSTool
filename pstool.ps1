@@ -119,6 +119,17 @@ $ToolBeltJson = @'
         "id":  "ruf",
         "script":  "https://raw.githubusercontent.com/everydayintech/Scripts/refs/heads/main/Tools/Invoke-DownloadExpandRun.ps1?https%3a%2f%2fgithub.com%2fpbatard%2frufus%2freleases%2fdownload%2fv4.11%2frufus-4.11p.exe%26rufus-4.11p.exe%26ABBF04D50A44A9612C027FC8072F6DA67F5BCDA2B826F1F852C9C24D7A1FCDFF%26False%26%26rufus-4.11p.exe#",
         "newProcess": true
+    },
+    {
+        "name":  "Run TeamViewer QS",
+        "description":  "Download TeamViewer QS to temp directory and run it",
+        "keywords":  [
+                         "remote",
+                         "control",
+                     ],
+        "id":  "tvq",
+        "script":  "https://raw.githubusercontent.com/everydayintech/Scripts/refs/heads/main/Tools/Get-TeamViewerQS.ps1",
+        "newProcess": false
     }
 ]
 '@
