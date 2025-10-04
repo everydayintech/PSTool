@@ -11,7 +11,8 @@ $ToolBeltJson = @'
                          "ime"
                      ],
         "id":  "imelog",
-        "script":  "https://raw.githubusercontent.com/everydayintech/Scripts/main/Intune/Invoke-CMTraceIMELog.ps1"
+        "script":  "https://raw.githubusercontent.com/everydayintech/Scripts/main/Intune/Invoke-CMTraceIMELog.ps1",
+        "newProcess": false
     },
     {
         "name":  "Run CMTrace",
@@ -22,7 +23,8 @@ $ToolBeltJson = @'
                          "logs"
                      ],
         "id":  "cmt",
-        "script":  "https://raw.githubusercontent.com/everydayintech/Scripts/main/Intune/Get-CMTrace.ps1"
+        "script":  "https://raw.githubusercontent.com/everydayintech/Scripts/main/Intune/Get-CMTrace.ps1",
+        "newProcess": false
     },
     {
         "name":  "Run HP Image Assistant",
@@ -37,7 +39,8 @@ $ToolBeltJson = @'
                          "treiber"
                      ],
         "id":  "hpia",
-        "script":  "https://raw.githubusercontent.com/everydayintech/Scripts/main/HP/Invoke-HPImageAssistant.ps1"
+        "script":  "https://raw.githubusercontent.com/everydayintech/Scripts/main/HP/Invoke-HPImageAssistant.ps1",
+        "newProcess": false
     },
     {
         "name":  "Logoff and remove LastLoggedOnUser from Registry",
@@ -46,7 +49,8 @@ $ToolBeltJson = @'
                          "logout"
                      ],
         "id":  "logoff",
-        "script":  "https://gist.githubusercontent.com/everydayintech/d2762560d3b24c06f14143778cc25de4/raw/6293e8604de710725f6ee6000bc2c6f894ee1b82/logoff.ps1"
+        "script":  "https://gist.githubusercontent.com/everydayintech/d2762560d3b24c06f14143778cc25de4/raw/6293e8604de710725f6ee6000bc2c6f894ee1b82/logoff.ps1",
+        "newProcess": false
     },
     {
         "name":  "Uninstall Microsoft ConfigMgr Agent",
@@ -57,7 +61,8 @@ $ToolBeltJson = @'
                          "sccm"
                      ],
         "id":  "rcm",
-        "script":  "https://gist.githubusercontent.com/everydayintech/45fe66b0ee59f58f9aa0a5ec0b655e3d/raw/346d57029d6c563aac2878650de66ce47aa1e468/Remove%2520CCMAgent.ps1"
+        "script":  "https://gist.githubusercontent.com/everydayintech/45fe66b0ee59f58f9aa0a5ec0b655e3d/raw/346d57029d6c563aac2878650de66ce47aa1e468/Remove%2520CCMAgent.ps1",
+        "newProcess": false
     },
     {
         "name":  "Run Process Explorer",
@@ -70,7 +75,8 @@ $ToolBeltJson = @'
                          "sysinternals"
                      ],
         "id":  "pe",
-        "script":  "https://raw.githubusercontent.com/everydayintech/Scripts/main/Tools/Get-ProcExp.ps1"
+        "script":  "https://raw.githubusercontent.com/everydayintech/Scripts/main/Tools/Get-ProcExp.ps1",
+        "newProcess": false
     },
     {
         "name":  "Run Process Monitor",
@@ -81,7 +87,8 @@ $ToolBeltJson = @'
                          "sysinternals"
                      ],
         "id":  "pm",
-        "script":  "https://raw.githubusercontent.com/everydayintech/Scripts/main/Tools/Get-ProcMon.ps1"
+        "script":  "https://raw.githubusercontent.com/everydayintech/Scripts/main/Tools/Get-ProcMon.ps1",
+        "newProcess": false
     },
     {
         "name":  "Run WinDirStat Portable",
@@ -94,7 +101,8 @@ $ToolBeltJson = @'
                          "stat"
                      ],
         "id":  "wds",
-        "script":  "https://raw.githubusercontent.com/everydayintech/Scripts/refs/heads/main/Tools/Get-WinDirStatPortable.ps1"
+        "script":  "https://raw.githubusercontent.com/everydayintech/Scripts/refs/heads/main/Tools/Get-WinDirStatPortable.ps1",
+        "newProcess": false
     },
     {
         "name":  "Run WinDirStat Portable",
@@ -107,7 +115,8 @@ $ToolBeltJson = @'
                          "stat"
                      ],
         "id":  "wds2",
-        "script":  "https://raw.githubusercontent.com/everydayintech/Scripts/refs/heads/main/Tools/Invoke-DownloadExpandRun.ps1?https%3a%2f%2fgithub.com%2fwindirstat%2fwindirstat%2freleases%2fdownload%2frelease%2fv2.2.2%2fWinDirStat.zip%26WinDirStat.zip%268161876730EB80E56B34331BDA633DB83E44AEC9897713A48713633CD6D672E5%26True%26WinDirStatPortable%26x64%2fWinDirStat.exe#"
+        "script":  "https://raw.githubusercontent.com/everydayintech/Scripts/refs/heads/main/Tools/Invoke-DownloadExpandRun.ps1?https%3a%2f%2fgithub.com%2fwindirstat%2fwindirstat%2freleases%2fdownload%2frelease%2fv2.2.2%2fWinDirStat.zip%26WinDirStat.zip%268161876730EB80E56B34331BDA633DB83E44AEC9897713A48713633CD6D672E5%26True%26WinDirStatPortable%26x64%2fWinDirStat.exe#",
+        "newProcess": true
     }
 ]
 '@
@@ -161,8 +170,18 @@ do {
         if ($UrlParamUserConfirm -OR $UserConfirm.ToLower().Equals('y')) {
             Write-Host ('Running Tool [{0}]!' -f $SelectedTool.name) -ForegroundColor Magenta
 
-            Invoke-RestMethod -UseBasicParsing -Uri $SelectedTool.script | Invoke-Expression
-            return
+            if ($SelectedTool.newProcess) {
+                if ($PSVersionTable.PSVersion.Major -eq 5) {
+                    & powershell -Command "Invoke-RestMethod -UseBasicParsing -Uri `"$($SelectedTool.script)`" | Invoke-Expression"
+                }
+                else {
+                    & pwsh -Command "Invoke-RestMethod -UseBasicParsing -Uri `"$($SelectedTool.script)`" | Invoke-Expression"
+                }   
+            } 
+            else {
+                Invoke-RestMethod -UseBasicParsing -Uri $SelectedTool.script | Invoke-Expression
+                return
+            }
         }
 
         #Reset Selected Tool
