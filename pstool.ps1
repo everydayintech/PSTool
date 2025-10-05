@@ -130,6 +130,21 @@ $ToolBeltJson = @'
         "id":  "tvq",
         "script":  "https://raw.githubusercontent.com/everydayintech/Scripts/refs/heads/main/Tools/Get-TeamViewerQS.ps1",
         "newProcess": false
+    },
+    {
+        "name":  "Run Explorer++",
+        "description":  "Download Explorer++ to temp directory and run it",
+        "keywords":  [
+                         "files",
+                         "folder",
+                         "ntfs",
+                         "permissions",
+                         "acl",
+                         "windows"
+                     ],
+        "id":  "epp",
+        "script":  "https://raw.githubusercontent.com/everydayintech/Scripts/refs/heads/main/Tools/Invoke-DownloadExpandRun.ps1?https%3a%2f%2fdownload.explorerplusplus.com%2fstable%2f1.4.0%2fexplorerpp_x64.zip%26explorerpp_64.zip%2681EC54586DFEF888B886D409AFA22E31F22D4F6BA35D52D93074B4EE64B79B0C%26True%26ExplorerPP%26Explorer%2b%2b.exe#",
+        "newProcess": true
     }
 ]
 '@
