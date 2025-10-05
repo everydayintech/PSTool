@@ -125,7 +125,7 @@ $ToolBeltJson = @'
         "description":  "Download TeamViewer QS to temp directory and run it",
         "keywords":  [
                          "remote",
-                         "control",
+                         "control"
                      ],
         "id":  "tvq",
         "script":  "https://raw.githubusercontent.com/everydayintech/Scripts/refs/heads/main/Tools/Get-TeamViewerQS.ps1",
