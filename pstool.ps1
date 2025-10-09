@@ -204,12 +204,13 @@ do {
             Write-Host ('Running Tool [{0}]!' -f $SelectedTool.name) -ForegroundColor Magenta
 
             if ($SelectedTool.newProcess -eq $true) {
-                $PSCommand = "`$VerbosePreference = `"'$VerbosePreference'`"; Invoke-RestMethod -UseBasicParsing -Uri `"$($SelectedTool.script)`" | Invoke-Expression"
                 if ($PSVersionTable.PSVersion.Major -eq 5) {
+                    $PSCommand = "`$VerbosePreference = `"'$VerbosePreference'`"; Invoke-RestMethod -UseBasicParsing -Uri `"$($SelectedTool.script)`" | Invoke-Expression"
                     & powershell -Command $PSCommand
                     return
                 }
                 else {
+                    $PSCommand = "`$VerbosePreference = `"$VerbosePreference`"; Invoke-RestMethod -UseBasicParsing -Uri `"$($SelectedTool.script)`" | Invoke-Expression"
                     & pwsh -Command $PSCommand
                     return
                 }   
