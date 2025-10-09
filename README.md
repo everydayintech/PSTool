@@ -33,6 +33,10 @@ Optionally add a bang `!` to the end of the parameter to skip the confirmation d
 irm https://pstool.net?cmt! | iex
 ```
 
+## Compatibility 
+
+PSTool is currently designed for use with Microsoft Windows. I have a few ideas for Linux and macOS, but these have not yet been implemented. PSTool runs on Windows PowerShell and PowerShell 7.
+
 ## Contributing
 
 If you have a tool you'd like to add, or if you've found a bug, please open an issue or submit a pull request.
