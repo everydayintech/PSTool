@@ -132,6 +132,19 @@ $ToolBeltJson = @'
         "newProcess": false
     },
     {
+        "name":  "Run TeamViewer QS LITS",
+        "description":  "Download TeamViewer QS LITS to temp directory and run it",
+        "keywords":  [
+                         "remote",
+                         "control",
+                         "lits"
+                     ],
+        "id":  "tvql",
+        "script":  "https://raw.githubusercontent.com/everydayintech/Scripts/refs/heads/main/Tools/Get-TeamViewerQSLITS.ps1",
+        "newProcess": false,
+        "unlisted": true
+    },
+    {
         "name":  "Run Explorer++",
         "description":  "Download Explorer++ to temp directory and run it",
         "keywords":  [
@@ -220,7 +233,13 @@ do {
         
     }
     else {
-        $MatchingTools = $ToolBelt | Where-Object { ($_.id -eq $UserInput) -or ($_.keywords -contains $UserInput) -or ($_.description -like "*$UserInput*") }
+        $MatchingTools = $ToolBelt `
+        | Where-Object { 
+            $_.unlisted -ne $true `
+            -and (($_.id -eq $UserInput) `
+            -or ($_.keywords -contains $UserInput) `
+            -or ($_.description -like "*$UserInput*"))
+        }
         foreach ($tool in $MatchingTools) {
             Write-Host ('[{0}] {1}' -f $tool.id, $tool.name) -ForegroundColor Cyan
         }    
