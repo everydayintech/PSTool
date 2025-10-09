@@ -11,8 +11,7 @@ $ToolBeltJson = @'
                          "ime"
                      ],
         "id":  "imelog",
-        "script":  "https://raw.githubusercontent.com/everydayintech/Scripts/main/Intune/Invoke-CMTraceIMELog.ps1",
-        "newProcess": false
+        "script":  "https://raw.githubusercontent.com/everydayintech/Scripts/main/Intune/Invoke-CMTraceIMELog.ps1"
     },
     {
         "name":  "Run CMTrace",
@@ -23,8 +22,7 @@ $ToolBeltJson = @'
                          "logs"
                      ],
         "id":  "cmt",
-        "script":  "https://raw.githubusercontent.com/everydayintech/Scripts/main/Intune/Get-CMTrace.ps1",
-        "newProcess": false
+        "script":  "https://raw.githubusercontent.com/everydayintech/Scripts/main/Intune/Get-CMTrace.ps1"
     },
     {
         "name":  "Run HP Image Assistant",
@@ -39,8 +37,7 @@ $ToolBeltJson = @'
                          "treiber"
                      ],
         "id":  "hpia",
-        "script":  "https://raw.githubusercontent.com/everydayintech/Scripts/main/HP/Invoke-HPImageAssistant.ps1",
-        "newProcess": false
+        "script":  "https://raw.githubusercontent.com/everydayintech/Scripts/main/HP/Invoke-HPImageAssistant.ps1"
     },
     {
         "name":  "Logoff and remove LastLoggedOnUser from Registry",
@@ -49,8 +46,7 @@ $ToolBeltJson = @'
                          "logout"
                      ],
         "id":  "logoff",
-        "script":  "https://gist.githubusercontent.com/everydayintech/d2762560d3b24c06f14143778cc25de4/raw/6293e8604de710725f6ee6000bc2c6f894ee1b82/logoff.ps1",
-        "newProcess": false
+        "script":  "https://gist.githubusercontent.com/everydayintech/d2762560d3b24c06f14143778cc25de4/raw/6293e8604de710725f6ee6000bc2c6f894ee1b82/logoff.ps1"
     },
     {
         "name":  "Uninstall Microsoft ConfigMgr Agent",
@@ -61,8 +57,7 @@ $ToolBeltJson = @'
                          "sccm"
                      ],
         "id":  "rcm",
-        "script":  "https://gist.githubusercontent.com/everydayintech/45fe66b0ee59f58f9aa0a5ec0b655e3d/raw/346d57029d6c563aac2878650de66ce47aa1e468/Remove%2520CCMAgent.ps1",
-        "newProcess": false
+        "script":  "https://gist.githubusercontent.com/everydayintech/45fe66b0ee59f58f9aa0a5ec0b655e3d/raw/346d57029d6c563aac2878650de66ce47aa1e468/Remove%2520CCMAgent.ps1"
     },
     {
         "name":  "Run Process Explorer",
@@ -75,8 +70,7 @@ $ToolBeltJson = @'
                          "sysinternals"
                      ],
         "id":  "pe",
-        "script":  "https://raw.githubusercontent.com/everydayintech/Scripts/main/Tools/Get-ProcExp.ps1",
-        "newProcess": false
+        "script":  "https://raw.githubusercontent.com/everydayintech/Scripts/main/Tools/Get-ProcExp.ps1"
     },
     {
         "name":  "Run Process Monitor",
@@ -87,8 +81,7 @@ $ToolBeltJson = @'
                          "sysinternals"
                      ],
         "id":  "pm",
-        "script":  "https://raw.githubusercontent.com/everydayintech/Scripts/main/Tools/Get-ProcMon.ps1",
-        "newProcess": false
+        "script":  "https://raw.githubusercontent.com/everydayintech/Scripts/main/Tools/Get-ProcMon.ps1"
     },
     {
         "name":  "Run WinDirStat",
@@ -128,8 +121,7 @@ $ToolBeltJson = @'
                          "control"
                      ],
         "id":  "tvq",
-        "script":  "https://raw.githubusercontent.com/everydayintech/Scripts/refs/heads/main/Tools/Get-TeamViewerQS.ps1",
-        "newProcess": false
+        "script":  "https://raw.githubusercontent.com/everydayintech/Scripts/refs/heads/main/Tools/Get-TeamViewerQS.ps1"
     },
     {
         "name":  "Run TeamViewer QS LITS",
@@ -211,7 +203,7 @@ do {
         if ($UrlParamUserConfirm -OR $UserConfirm.ToLower().Equals('y')) {
             Write-Host ('Running Tool [{0}]!' -f $SelectedTool.name) -ForegroundColor Magenta
 
-            if ($SelectedTool.newProcess) {
+            if ($SelectedTool.newProcess -eq $true) {
                 $PSCommand = "`$VerbosePreference = `"$VerbosePreference`"; Invoke-RestMethod -UseBasicParsing -Uri `"$($SelectedTool.script)`" | Invoke-Expression"
                 if ($PSVersionTable.PSVersion.Major -eq 5) {
                     & powershell -Command $PSCommand
