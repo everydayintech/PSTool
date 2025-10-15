@@ -150,6 +150,22 @@ $ToolBeltJson = @'
         "id":  "epp",
         "script":  "https://raw.githubusercontent.com/everydayintech/Scripts/refs/heads/main/Tools/Invoke-DownloadExpandRun.ps1?https%3a%2f%2fdownload.explorerplusplus.com%2fstable%2f1.4.0%2fexplorerpp_x64.zip%26explorerpp_64.zip%2681EC54586DFEF888B886D409AFA22E31F22D4F6BA35D52D93074B4EE64B79B0C%26True%26ExplorerPP%26Explorer%2b%2b.exe#",
         "newProcess": true
+    },
+    {
+        "name":  "Watch EventLog in near real time",
+        "description":  "Loads a PowerShell CmdLet 'Watch-EventLog' to monitor the Windows Event Log in near real time.",
+        "keywords":  [
+                         "event",
+                         "log",
+                         "intune",
+                         "autopilot",
+                         "hyperv",
+                         "windows",
+                         "troubleshoot",
+                         "eventlog"
+                     ],
+        "id":  "wel",
+        "script":  "https://gist.githubusercontent.com/everydayintech/8d17e63d098ec4e6b9a836c2fe447461/raw"
     }
 ]
 '@
