@@ -133,7 +133,6 @@ $ToolBeltJson = @'
                      ],
         "id":  "tvql",
         "script":  "https://raw.githubusercontent.com/everydayintech/Scripts/refs/heads/main/Tools/Get-TeamViewerQSLITS.ps1",
-        "newProcess": false,
         "unlisted": true
     },
     {
@@ -165,7 +164,7 @@ $ToolBeltJson = @'
                          "eventlog"
                      ],
         "id":  "wel",
-        "script":  "https://gist.githubusercontent.com/everydayintech/8d17e63d098ec4e6b9a836c2fe447461/raw"
+        "script":  "https://raw.githubusercontent.com/everydayintech/Scripts/refs/heads/main/Tools/Watch-EventLog.ps1"
     }
 ]
 '@
